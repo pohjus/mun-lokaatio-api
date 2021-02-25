@@ -1,14 +1,14 @@
 const express = require("express");
-const app = express();
+let locationsrouter = require("./routes/locationrouter.js");
 
+const app = express();
 const port = process.env.PORT || 8080;
-// test
+
+// display "static files"
 app.use(express.static("public"));
 
-// http://localhost:3000/taikaviitta
-app.get("/taikaviitta", (req, res) => {
-  res.send("muutos  sddssdsd");
-});
+// jos url alkaa http://localhost:8080/api/locations
+app.use("/api/locations", locationsrouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
